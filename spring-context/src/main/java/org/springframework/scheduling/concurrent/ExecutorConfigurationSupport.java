@@ -141,23 +141,22 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	 * since all remaining tasks in the queue will still get executed - in contrast
 	 * to the default shutdown behavior where it's just about waiting for currently
 	 * executing tasks that aren't reacting to thread interruption.
+	 * @see #setAwaitTerminationMillis
 	 * @see java.util.concurrent.ExecutorService#shutdown()
 	 * @see java.util.concurrent.ExecutorService#awaitTermination
 	 */
 	public void setAwaitTerminationSeconds(int awaitTerminationSeconds) {
-		this.awaitTerminationMillis = awaitTerminationSeconds * 1000;
+		this.awaitTerminationMillis = awaitTerminationSeconds * 1000L;
 	}
 
 	/**
 	 * Variant of {@link #setAwaitTerminationSeconds} with millisecond precision.
 	 * @since 5.2.4
-	 * @see java.util.concurrent.ExecutorService#shutdown()
-	 * @see java.util.concurrent.ExecutorService#awaitTermination
+	 * @see #setAwaitTerminationSeconds
 	 */
 	public void setAwaitTerminationMillis(long awaitTerminationMillis) {
 		this.awaitTerminationMillis = awaitTerminationMillis;
 	}
-
 
 	@Override
 	public void setBeanName(String name) {
